@@ -10,12 +10,22 @@
       href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Poppins:wght@400;600;700&display=swap"
       rel="stylesheet"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css"
+    />
     <style>
       :root {
-        --brand-dark: #0f172a;
-        --brand-accent: #111827;
-        --bg-light: linear-gradient(145deg, #f8fafc, #e8effd);
-        --white: #ffffff;
+        --brand-deep: #041b28;
+        --brand-ink: #0f172a;
+        --brand-gold: #fbbf24;
+        --brand-emerald: #10b981;
+        --brand-rose: #fb7185;
+        --brand-light: rgba(255, 255, 255, 0.92);
+        --surface: rgba(255, 255, 255, 0.86);
+        --stroke: rgba(15, 23, 42, 0.08);
+        --shadow-lg: 0 40px 90px rgba(15, 23, 42, 0.18);
+        --shadow-md: 0 20px 48px rgba(15, 23, 42, 0.16);
       }
 
       * {
@@ -25,278 +35,792 @@
       body {
         margin: 0;
         min-height: 100vh;
-        display: flex;
-        flex-direction: column;
         font-family: "Poppins", "Montserrat", "Inter", sans-serif;
-        color: var(--brand-dark);
-        background: var(--bg-light);
+        color: var(--brand-ink);
+        background: radial-gradient(
+          circle at top left,
+          #e0f2ff 0%,
+          #ffffff 45%,
+          #f3f4fa 100%
+        );
+        position: relative;
+        overflow-x: hidden;
+      }
+
+      body::before,
+      body::after {
+        content: "";
+        position: fixed;
+        pointer-events: none;
+        z-index: -1;
+        opacity: 0.85;
+        mix-blend-mode: multiply;
+      }
+
+      body::before {
+        top: -22vmax;
+        right: -16vmax;
+        width: 55vmax;
+        height: 55vmax;
+        background: radial-gradient(
+          circle,
+          rgba(79, 70, 229, 0.28) 0%,
+          rgba(79, 70, 229, 0) 68%
+        );
+      }
+
+      body::after {
+        bottom: -26vmax;
+        left: -14vmax;
+        width: 60vmax;
+        height: 60vmax;
+        background: radial-gradient(
+          circle,
+          rgba(16, 185, 129, 0.24) 0%,
+          rgba(16, 185, 129, 0) 72%
+        );
       }
 
       main {
-        flex: 1;
+        width: min(1120px, 100% - 48px);
+        margin: 0 auto;
+        padding: clamp(32px, 6vw, 72px) 0 96px;
         display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 40px 16px;
+        flex-direction: column;
+        gap: clamp(56px, 8vw, 104px);
       }
 
-      .hero-card {
-        width: min(640px, 100%);
-        padding: clamp(32px, 4vw, 56px);
-        background: rgba(255, 255, 255, 0.92);
-        border-radius: 28px;
-        box-shadow: 0 28px 60px rgba(15, 23, 42, 0.12);
+      .hero {
+        position: relative;
+        background: var(--surface);
+        padding: clamp(32px, 5vw, 64px);
+        border-radius: clamp(28px, 5vw, 40px);
+        border: 1px solid var(--stroke);
+        box-shadow: var(--shadow-lg);
+        display: grid;
+        gap: clamp(32px, 5vw, 56px);
+        align-items: center;
+      }
+
+      .hero::after {
+        content: "";
+        position: absolute;
+        inset: 24px;
+        border-radius: inherit;
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0) 0%,
+          rgba(251, 191, 36, 0.08) 28%,
+          rgba(79, 70, 229, 0.12) 65%,
+          rgba(16, 185, 129, 0.08) 100%
+        );
+        z-index: 0;
+        pointer-events: none;
+      }
+
+      .hero-content,
+      .hero-media {
+        position: relative;
+        z-index: 1;
+      }
+
+      .hero-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: clamp(12px, 1.8vw, 20px);
         text-align: center;
-        backdrop-filter: blur(8px);
       }
 
       .hero-logo {
-        display: block;
-        width: clamp(180px, 30vw, 240px);
-        margin: 0 auto 24px;
-        filter: drop-shadow(0 12px 24px rgba(15, 23, 42, 0.15));
+        width: clamp(160px, 28vw, 220px);
+        margin: 0 auto clamp(16px, 3vw, 24px);
+        filter: drop-shadow(0 16px 32px rgba(4, 27, 40, 0.15));
+      }
+
+      .hero-kicker {
+        font-size: 0.85rem;
+        letter-spacing: 0.32em;
+        text-transform: uppercase;
+        color: rgba(4, 27, 40, 0.6);
+        font-weight: 600;
       }
 
       .hero-tagline {
-        margin: 0 0 12px;
-        font-size: clamp(1.8rem, 4vw, 2.8rem);
+        margin: 0;
+        font-size: clamp(2.4rem, 6vw, 3.4rem);
         font-weight: 700;
         letter-spacing: -0.02em;
       }
 
       .hero-statement {
-        margin: 0 0 32px;
-        font-size: clamp(1rem, 2.2vw, 1.3rem);
+        margin: 0;
+        font-size: clamp(1.2rem, 3vw, 1.6rem);
         font-weight: 500;
-        letter-spacing: 0.02em;
-        color: rgba(15, 23, 42, 0.78);
+        color: rgba(15, 23, 42, 0.75);
+      }
+
+      .hero-subtext {
+        margin: 0;
+        font-size: clamp(1rem, 2.2vw, 1.1rem);
+        color: rgba(15, 23, 42, 0.68);
+        line-height: 1.6;
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+        justify-content: center;
+        margin-top: clamp(12px, 2vw, 24px);
       }
 
       .hero-cta {
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        padding: 14px 32px;
+        padding: 14px 36px;
         border-radius: 999px;
-        background: var(--brand-accent);
-        color: var(--white);
+        background: #111827;
+        color: #ffffff;
         font-weight: 600;
-        font-size: 1rem;
-        letter-spacing: 0.04em;
+        font-size: 0.95rem;
+        letter-spacing: 0.08em;
         text-transform: uppercase;
         text-decoration: none;
-        transition: transform 0.25s ease, box-shadow 0.25s ease,
-          background 0.25s ease;
-        box-shadow: 0 14px 32px rgba(17, 24, 39, 0.22);
+        box-shadow: 0 22px 44px rgba(17, 24, 39, 0.35);
+        transition: transform 0.3s ease, box-shadow 0.3s ease,
+          background 0.3s ease;
       }
 
       .hero-cta:hover,
       .hero-cta:focus-visible {
-        transform: translateY(-2px) scale(1.03);
-        box-shadow: 0 20px 40px rgba(17, 24, 39, 0.32);
+        transform: translateY(-3px) scale(1.03);
         background: #000000;
+        box-shadow: 0 28px 60px rgba(0, 0, 0, 0.4);
       }
 
-      .socials {
-        margin-top: clamp(36px, 5vw, 48px);
-      }
-
-      .socials-title {
-        margin: 0 0 20px;
-        font-size: clamp(1.1rem, 2.4vw, 1.3rem);
-        font-weight: 600;
-        letter-spacing: 0.18em;
-        text-transform: uppercase;
-        color: rgba(15, 23, 42, 0.68);
-      }
-
-      .socials-links {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: clamp(16px, 3vw, 28px);
-        flex-wrap: wrap;
-      }
-
-      .social-icon {
-        width: 60px;
-        height: 60px;
-        border-radius: 50%;
+      .cta-secondary {
         display: inline-flex;
         align-items: center;
-        justify-content: center;
-        color: var(--white);
+        gap: 8px;
+        padding: 12px 24px;
+        border-radius: 999px;
+        border: 1px solid rgba(17, 24, 39, 0.16);
+        color: var(--brand-ink);
+        background: rgba(255, 255, 255, 0.75);
         text-decoration: none;
-        box-shadow: 0 14px 26px rgba(15, 23, 42, 0.18);
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-        position: relative;
+        font-weight: 600;
+        transition: transform 0.3s ease, border-color 0.3s ease,
+          box-shadow 0.3s ease;
       }
 
-      .social-icon svg {
-        width: 28px;
-        height: 28px;
-        fill: currentColor;
+      .cta-secondary i {
+        font-size: 1.1rem;
       }
 
-      .social-icon:hover,
-      .social-icon:focus-visible {
-        transform: scale(1.08);
-        box-shadow: 0 20px 40px rgba(99, 102, 241, 0.35);
+      .cta-secondary:hover,
+      .cta-secondary:focus-visible {
+        transform: translateY(-2px);
+        border-color: rgba(79, 70, 229, 0.5);
+        box-shadow: 0 16px 30px rgba(79, 70, 229, 0.22);
       }
 
-      .social-icon[data-brand="instagram"] {
-        background: linear-gradient(135deg, #fd1d1d, #f56040, #ffdc80, #bc2a8d);
-      }
-
-      .social-icon[data-brand="tiktok"] {
-        background: #000000;
-      }
-
-      .social-icon[data-brand="phone"] {
-        background: #1f2937;
-      }
-
-      .social-icon[data-brand="whatsapp"] {
-        background: #25d366;
-      }
-
-      .sr-only {
-        position: absolute;
-        width: 1px;
-        height: 1px;
+      .hero-stats {
+        list-style: none;
+        margin: clamp(24px, 4vw, 36px) 0 0;
         padding: 0;
-        margin: -1px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: clamp(16px, 3vw, 28px);
+        justify-content: center;
+      }
+
+      .hero-stats li {
+        min-width: 150px;
+        padding: 16px 18px;
+        border-radius: 18px;
+        background: rgba(255, 255, 255, 0.8);
+        border: 1px solid rgba(15, 23, 42, 0.08);
+        box-shadow: 0 12px 28px rgba(15, 23, 42, 0.12);
+        text-align: left;
+      }
+
+      .hero-stats strong {
+        display: block;
+        font-size: 1.45rem;
+        font-weight: 700;
+        color: var(--brand-ink);
+      }
+
+      .hero-stats span {
+        font-size: 0.85rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: rgba(15, 23, 42, 0.6);
+      }
+
+      .hero-media {
+        display: grid;
+        gap: 22px;
+        justify-items: center;
+      }
+
+      .media-frame {
+        position: relative;
+        width: min(320px, 100%);
+        aspect-ratio: 3 / 4;
+        border-radius: 28px;
         overflow: hidden;
-        clip: rect(0, 0, 0, 0);
-        border: 0;
+        box-shadow: 0 30px 60px rgba(4, 27, 40, 0.28);
+      }
+
+      .media-frame img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .media-badge {
+        position: absolute;
+        bottom: 16px;
+        left: 16px;
+        padding: 10px 18px;
+        border-radius: 999px;
+        background: rgba(4, 27, 40, 0.72);
+        color: #ffffff;
+        font-size: 0.78rem;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+      }
+
+      .media-card {
+        width: min(320px, 100%);
+        padding: 20px 24px;
+        background: rgba(255, 255, 255, 0.96);
+        border-radius: 22px;
+        border: 1px solid rgba(15, 23, 42, 0.06);
+        box-shadow: var(--shadow-md);
+        display: grid;
+        gap: 8px;
+        text-align: left;
+      }
+
+      .media-card h3 {
+        margin: 0;
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: var(--brand-ink);
+      }
+
+      .media-card p {
+        margin: 0;
+        font-size: 0.95rem;
+        color: rgba(15, 23, 42, 0.68);
+        line-height: 1.5;
+      }
+
+      .media-card a {
+        justify-self: start;
+        margin-top: 8px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: var(--brand-emerald);
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .media-card a:hover,
+      .media-card a:focus-visible {
+        color: #059669;
+      }
+
+      .media-card i {
+        font-size: 1rem;
+      }
+
+      .section-header {
+        text-align: center;
+        max-width: 640px;
+        margin: 0 auto clamp(32px, 5vw, 48px);
+        display: grid;
+        gap: 12px;
+      }
+
+      .section-kicker {
+        font-size: 0.82rem;
+        letter-spacing: 0.32em;
+        text-transform: uppercase;
+        color: rgba(79, 70, 229, 0.7);
+        font-weight: 600;
+      }
+
+      .section-header h2 {
+        margin: 0;
+        font-size: clamp(1.9rem, 4.8vw, 2.6rem);
+        font-weight: 700;
+        color: var(--brand-ink);
+        letter-spacing: -0.015em;
+      }
+
+      .section-header p {
+        margin: 0;
+        color: rgba(15, 23, 42, 0.68);
+        font-size: 1rem;
+        line-height: 1.6;
+      }
+
+      .caps-gallery {
+        padding: clamp(32px, 5vw, 56px);
+        border-radius: clamp(24px, 4vw, 32px);
+        background: var(--brand-light);
+        border: 1px solid rgba(15, 23, 42, 0.06);
+        box-shadow: 0 28px 60px rgba(4, 27, 40, 0.12);
+      }
+
+      .caps-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: clamp(18px, 3vw, 28px);
+      }
+
+      .cap-card {
+        position: relative;
+        height: 280px;
+        border-radius: 24px;
+        overflow: hidden;
+        display: flex;
+        align-items: flex-end;
+        padding: 24px;
+        color: #ffffff;
+        box-shadow: 0 24px 48px rgba(4, 27, 40, 0.24);
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;
+      }
+
+      .cap-card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          180deg,
+          rgba(4, 27, 40, 0.15) 0%,
+          rgba(4, 27, 40, 0.7) 75%,
+          rgba(4, 27, 40, 0.85) 100%
+        );
+      }
+
+      .cap-card > div {
+        position: relative;
+        z-index: 1;
+        display: grid;
+        gap: 6px;
+      }
+
+      .cap-card span {
+        font-size: 0.78rem;
+        letter-spacing: 0.24em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.72);
+      }
+
+      .cap-card h3 {
+        margin: 0;
+        font-size: 1.4rem;
+        font-weight: 600;
+      }
+
+      .cap-card p {
+        margin: 0;
+        font-size: 0.95rem;
+        line-height: 1.5;
+        color: rgba(255, 255, 255, 0.82);
+      }
+
+      .connect {
+        display: grid;
+        gap: clamp(24px, 4vw, 36px);
+        padding: clamp(32px, 5vw, 52px);
+        border-radius: clamp(24px, 4vw, 32px);
+        background: linear-gradient(
+          120deg,
+          rgba(4, 27, 40, 0.92) 0%,
+          rgba(17, 24, 39, 0.88) 60%,
+          rgba(15, 23, 42, 0.82) 100%
+        );
+        color: #ffffff;
+        box-shadow: 0 32px 60px rgba(4, 27, 40, 0.35);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .connect .section-header h2 {
+        color: #ffffff;
+      }
+
+      .connect .section-header p {
+        color: rgba(255, 255, 255, 0.76);
+      }
+
+      .connect .section-kicker {
+        color: rgba(251, 191, 36, 0.8);
+      }
+
+      .connect-channels {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: clamp(18px, 3vw, 26px);
+      }
+
+      .channel {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        padding: 22px 20px;
+        border-radius: 20px;
+        text-decoration: none;
+        background: rgba(15, 23, 42, 0.55);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        color: #ffffff;
+        transition: transform 0.3s ease, box-shadow 0.3s ease,
+          background 0.3s ease;
+      }
+
+      .channel:hover,
+      .channel:focus-visible {
+        transform: translateY(-6px);
+        box-shadow: 0 24px 48px rgba(0, 0, 0, 0.35);
+        background: rgba(15, 23, 42, 0.75);
+      }
+
+      .channel i {
+        font-size: 1.6rem;
+      }
+
+      .channel strong {
+        font-size: 1.05rem;
+        font-weight: 600;
+        letter-spacing: -0.01em;
+      }
+
+      .channel span {
+        font-size: 0.88rem;
+        color: rgba(255, 255, 255, 0.82);
+      }
+
+      .channel small {
+        font-size: 0.78rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.62);
+      }
+
+      .channel[data-brand="instagram"] {
+        background: linear-gradient(
+            140deg,
+            rgba(255, 115, 179, 0.32),
+            rgba(255, 163, 77, 0.28)
+          )
+          rgba(15, 23, 42, 0.55);
+      }
+
+      .channel[data-brand="tiktok"] {
+        background: linear-gradient(
+            140deg,
+            rgba(0, 242, 234, 0.28),
+            rgba(255, 56, 93, 0.28)
+          )
+          rgba(15, 23, 42, 0.55);
+      }
+
+      .channel[data-brand="whatsapp"] {
+        background: linear-gradient(
+            140deg,
+            rgba(16, 185, 129, 0.38),
+            rgba(45, 212, 191, 0.28)
+          )
+          rgba(15, 23, 42, 0.55);
+      }
+
+      .channel[data-brand="phone"] {
+        background: linear-gradient(
+            140deg,
+            rgba(59, 130, 246, 0.3),
+            rgba(79, 70, 229, 0.3)
+          )
+          rgba(15, 23, 42, 0.55);
       }
 
       footer {
-        padding: 16px;
+        padding: 20px;
         text-align: center;
         font-size: 0.85rem;
         color: rgba(15, 23, 42, 0.65);
       }
 
-      @media (max-width: 540px) {
-        .hero-card {
-          padding: clamp(28px, 6vw, 40px);
-          border-radius: 22px;
+      @media (min-width: 900px) {
+        .hero {
+          grid-template-columns: 1.15fr 0.85fr;
         }
 
-        .social-icon {
-          width: 54px;
-          height: 54px;
+        .hero-content {
+          text-align: left;
+          align-items: flex-start;
         }
 
-        .social-icon svg {
-          width: 24px;
-          height: 24px;
+        .hero-actions {
+          justify-content: flex-start;
+        }
+      }
+
+      @media (max-width: 720px) {
+        .hero {
+          padding: clamp(28px, 7vw, 44px);
+        }
+
+        .hero-stats li {
+          text-align: center;
+        }
+
+        .media-frame {
+          width: min(280px, 100%);
+        }
+      }
+
+      @media (max-width: 520px) {
+        main {
+          width: calc(100% - 32px);
+        }
+
+        .hero-actions {
+          flex-direction: column;
+        }
+
+        .cap-card {
+          height: 240px;
+        }
+
+        .channel {
+          padding: 20px 18px;
         }
       }
     </style>
   </head>
   <body>
     <main>
-      <section class="hero-card">
-        <img
-          src="assets/caphead-logo.png"
-          alt="CapHead logo"
-          class="hero-logo"
-          loading="lazy"
-        />
-        <p class="hero-tagline">Just the cap.</p>
-        <p class="hero-statement">style starts at the top</p>
-        <a
-          href="https://wa.me/2349034323055"
-          class="hero-cta"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Join the Movement
-        </a>
-
-        <div class="socials">
-          <p class="socials-title">Follow With Us</p>
-          <div class="socials-links">
+      <section class="hero">
+        <div class="hero-content">
+          <img
+            src="assets/caphead-logo.png"
+            alt="CapHead logo"
+            class="hero-logo"
+            loading="lazy"
+          />
+          <span class="hero-kicker">Community-first lifestyle brand</span>
+          <h1 class="hero-tagline">Just the cap.</h1>
+          <p class="hero-statement">style starts at the top</p>
+          <p class="hero-subtext">
+            CapHead curates premium headwear, editorial drops, and city meetups
+            powered by cap lovers from Lagos to Los Angeles.
+          </p>
+          <div class="hero-actions">
             <a
-              class="social-icon"
+              href="https://wa.me/2349034323055"
+              class="hero-cta"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Join the Movement
+            </a>
+            <a
+              class="cta-secondary"
               href="https://instagram.com/caphead.ng"
               target="_blank"
               rel="noopener noreferrer"
-              data-brand="instagram"
             >
-              <span class="sr-only">Instagram</span>
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path
-                  d="M12 5.8a6.2 6.2 0 1 0 6.2 6.2A6.2 6.2 0 0 0 12 5.8Zm0 10.2a4 4 0 1 1 4-4 4 4 0 0 1-4 4Zm6.4-10.6a1.44 1.44 0 1 1-1.44-1.44 1.44 1.44 0 0 1 1.44 1.44ZM21.7 7a6.58 6.58 0 0 0-1.79-4.66A6.58 6.58 0 0 0 15.25.56C13.81.44 10.19.44 8.75.56a6.58 6.58 0 0 0-4.66 1.78A6.58 6.58 0 0 0 2.3 7C2.18 8.44 2.18 12.06 2.3 13.5a6.58 6.58 0 0 0 1.78 4.66 6.58 6.58 0 0 0 4.66 1.79c1.44.12 5.06.12 6.5 0a6.58 6.58 0 0 0 4.66-1.79 6.58 6.58 0 0 0 1.79-4.66c.12-1.44.12-5.06 0-6.5Zm-2.6 8.89a3.75 3.75 0 0 1-2.11 2.11c-1.46.58-4.93.45-6.99.45s-5.54.13-7-.45a3.75 3.75 0 0 1-2.11-2.11c-.58-1.46-.45-4.93-.45-7s-.13-5.54.45-7A3.75 3.75 0 0 1 5.9 2.29c1.46-.58 4.93-.45 7-.45s5.54-.13 7 .45a3.75 3.75 0 0 1 2.11 2.11c.58 1.46.45 4.93.45 7s.13 5.54-.45 7Z"
-                />
-              </svg>
+              <i class="ri-play-circle-line" aria-hidden="true"></i>
+              Watch our lookbook
             </a>
-
+          </div>
+          <ul class="hero-stats">
+            <li>
+              <strong>15K+</strong>
+              <span>Cap wearers worldwide</span>
+            </li>
+            <li>
+              <strong>120+</strong>
+              <span>City chapters activated</span>
+            </li>
+            <li>
+              <strong>24/7</strong>
+              <span>Culture drops &amp; stories</span>
+            </li>
+          </ul>
+        </div>
+        <div class="hero-media">
+          <div class="media-frame">
+            <img
+              src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=800&q=80"
+              alt="CapHead community member styling a premium cap"
+              loading="lazy"
+            />
+            <span class="media-badge">Culture Drop 2025</span>
+          </div>
+          <div class="media-card">
+            <h3>Next drop: Midnight Run</h3>
+            <p>
+              Built with breathable tech-fabric, reflective piping, and a
+              hand-finished visor inspired by Lagos nightlife.
+            </p>
             <a
-              class="social-icon"
               href="https://tiktok.com/@caphead.ng"
               target="_blank"
               rel="noopener noreferrer"
-              data-brand="tiktok"
             >
-              <span class="sr-only">TikTok</span>
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path
-                  d="M19.71 7.57A6.7 6.7 0 0 1 15.42 6v7.11a4.94 4.94 0 1 1-4.94-4.94 4.88 4.88 0 0 1 1.05.11V5.26a7.11 7.11 0 1 0 5.9 7V9.87a9.29 9.29 0 0 0 4.58 1.27V7.66a3.63 3.63 0 0 1-2.3-.09Z"
-                />
-              </svg>
-            </a>
-
-            <a class="social-icon" href="tel:+2348133221547" data-brand="phone">
-              <span class="sr-only">Call +2348133221547</span>
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path
-                  d="M21.6 15.92 18.1 14a1.46 1.46 0 0 0-1.78.34l-1.45 1.77a11 11 0 0 1-4.9-4.9l1.77-1.45a1.45 1.45 0 0 0 .34-1.78L10.16 4.4A1.47 1.47 0 0 0 8.52 3.7L4.74 4.67A1.46 1.46 0 0 0 3.66 6c.33 2.9 1.64 6.78 4.72 9.87s6.97 4.39 9.87 4.72a1.46 1.46 0 0 0 1.36-1.08l.97-3.78a1.47 1.47 0 0 0-.98-1.83Z"
-                />
-              </svg>
-            </a>
-
-            <a class="social-icon" href="tel:+2349034323055" data-brand="phone">
-              <span class="sr-only">Call +2349034323055</span>
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path
-                  d="M21.6 15.92 18.1 14a1.46 1.46 0 0 0-1.78.34l-1.45 1.77a11 11 0 0 1-4.9-4.9l1.77-1.45a1.45 1.45 0 0 0 .34-1.78L10.16 4.4A1.47 1.47 0 0 0 8.52 3.7L4.74 4.67A1.46 1.46 0 0 0 3.66 6c.33 2.9 1.64 6.78 4.72 9.87s6.97 4.39 9.87 4.72a1.46 1.46 0 0 0 1.36-1.08l.97-3.78a1.47 1.47 0 0 0-.98-1.83Z"
-                />
-              </svg>
-            </a>
-
-            <a
-              class="social-icon"
-              href="https://wa.me/2349034323055"
-              target="_blank"
-              rel="noopener noreferrer"
-              data-brand="whatsapp"
-            >
-              <span class="sr-only">WhatsApp +2349034323055</span>
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path
-                  d="M20 3.94A10 10 0 0 0 2.28 16.42L1 23l6.73-1.77A10 10 0 0 0 20 3.94Zm-4.63 12.9a3.23 3.23 0 0 1-1.52.3c-.76 0-1.56-.2-2.41-.61a9.33 9.33 0 0 1-2.87-1.94 7.84 7.84 0 0 1-1.8-2.45 2.9 2.9 0 0 1-.33-1.4 3 3 0 0 1 1-2.21 1 1 0 0 1 .78-.36h.56c.17 0 .42.31.53.59.2.53.42 1.27.46 1.37a.44.44 0 0 1 0 .42 1 1 0 0 1-.17.27l-.24.28c-.08.1-.18.18-.09.34s.41.71.89 1.15a7.2 7.2 0 0 0 1.35.9c.16.08.26.07.35 0s.41-.48.52-.64.22-.13.36-.08 1.35.64 1.59.75.38.18.44.28a1.93 1.93 0 0 1-.12.99 2.34 2.34 0 0 1-.62.9Z"
-                />
-              </svg>
-            </a>
-
-            <a
-              class="social-icon"
-              href="https://wa.me/2348133221547"
-              target="_blank"
-              rel="noopener noreferrer"
-              data-brand="whatsapp"
-            >
-              <span class="sr-only">WhatsApp +2348133221547</span>
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path
-                  d="M20 3.94A10 10 0 0 0 2.28 16.42L1 23l6.73-1.77A10 10 0 0 0 20 3.94Zm-4.63 12.9a3.23 3.23 0 0 1-1.52.3c-.76 0-1.56-.2-2.41-.61a9.33 9.33 0 0 1-2.87-1.94 7.84 7.84 0 0 1-1.8-2.45 2.9 2.9 0 0 1-.33-1.4 3 3 0 0 1 1-2.21 1 1 0 0 1 .78-.36h.56c.17 0 .42.31.53.59.2.53.42 1.27.46 1.37a.44.44 0 0 1 0 .42 1 1 0 0 1-.17.27l-.24.28c-.08.1-.18.18-.09.34s.41.71.89 1.15a7.2 7.2 0 0 0 1.35.9c.16.08.26.07.35 0s.41-.48.52-.64.22-.13.36-.08 1.35.64 1.59.75.38.18.44.28a1.93 1.93 0 0 1-.12.99 2.34 2.34 0 0 1-.62.9Z"
-                />
-              </svg>
+              Preview on TikTok <i class="ri-arrow-right-line" aria-hidden="true"></i>
             </a>
           </div>
+        </div>
+      </section>
+
+      <section class="caps-gallery" id="caps">
+        <header class="section-header">
+          <span class="section-kicker">editor's picks</span>
+          <h2>Essentials for every head</h2>
+          <p>
+            Street-certified classics, stadium-ready statement pieces, and
+            limited collaborations from the global CapHead community.
+          </p>
+        </header>
+        <div class="caps-grid">
+          <article
+            class="cap-card"
+            style="background-image: url('https://images.unsplash.com/photo-1520975916090-3105956dac38?auto=format&fit=crop&w=900&q=80');"
+          >
+            <div>
+              <span>Drop 05</span>
+              <h3>Street Classics</h3>
+              <p>
+                Bold embroidered logos, heavyweight cotton, and a silhouette
+                built to last the grind.
+              </p>
+            </div>
+          </article>
+          <article
+            class="cap-card"
+            style="background-image: url('https://images.unsplash.com/photo-1514311548100-22c0bbef0c09?auto=format&fit=crop&w=900&q=80');"
+          >
+            <div>
+              <span>Seasonal Spotlight</span>
+              <h3>Skyline Neo</h3>
+              <p>
+                Sleek midnight mesh with reflective trims that light up every
+                rooftop session.
+              </p>
+            </div>
+          </article>
+          <article
+            class="cap-card"
+            style="background-image: url('https://images.unsplash.com/photo-1490111718993-d98654ce6cf7?auto=format&fit=crop&w=900&q=80');"
+          >
+            <div>
+              <span>Community collab</span>
+              <h3>Heritage Patch</h3>
+              <p>
+                Vintage varsity textures stitched with local artist patches and
+                limited to 150 units.
+              </p>
+            </div>
+          </article>
+          <article
+            class="cap-card"
+            style="background-image: url('https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=900&q=80');"
+          >
+            <div>
+              <span>Performance</span>
+              <h3>Velocity Tech</h3>
+              <p>
+                Lightweight nylon weave with moisture-wicking sweatband for the
+                run, ride, and rally.
+              </p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="connect" id="connect">
+        <header class="section-header">
+          <span class="section-kicker">follow with us</span>
+          <h2>Tune into the movement</h2>
+          <p>
+            Tap in for behind-the-scenes content, live drop alerts, and real-time
+            concierge support.
+          </p>
+        </header>
+        <div class="connect-channels">
+          <a
+            class="channel"
+            href="https://instagram.com/caphead.ng"
+            target="_blank"
+            rel="noopener noreferrer"
+            data-brand="instagram"
+          >
+            <i class="ri-instagram-line" aria-hidden="true"></i>
+            <strong>Instagram</strong>
+            <span>@caphead.ng</span>
+            <small>Daily fits &amp; reels</small>
+          </a>
+          <a
+            class="channel"
+            href="https://tiktok.com/@caphead.ng"
+            target="_blank"
+            rel="noopener noreferrer"
+            data-brand="tiktok"
+          >
+            <i class="ri-tiktok-line" aria-hidden="true"></i>
+            <strong>TikTok</strong>
+            <span>@caphead.ng</span>
+            <small>Caps in motion</small>
+          </a>
+          <a class="channel" href="tel:+2348133221547" data-brand="phone">
+            <i class="ri-phone-line" aria-hidden="true"></i>
+            <strong>Call CapHead</strong>
+            <span>+234 813 322 1547</span>
+            <small>Community concierge</small>
+          </a>
+          <a class="channel" href="tel:+2349034323055" data-brand="phone">
+            <i class="ri-phone-line" aria-hidden="true"></i>
+            <strong>Call CapHead</strong>
+            <span>+234 903 432 3055</span>
+            <small>Wholesale &amp; press</small>
+          </a>
+          <a
+            class="channel"
+            href="https://wa.me/2349034323055"
+            target="_blank"
+            rel="noopener noreferrer"
+            data-brand="whatsapp"
+          >
+            <i class="ri-whatsapp-line" aria-hidden="true"></i>
+            <strong>WhatsApp Crew</strong>
+            <span>+234 903 432 3055</span>
+            <small>Instant drop alerts</small>
+          </a>
+          <a
+            class="channel"
+            href="https://wa.me/2348133221547"
+            target="_blank"
+            rel="noopener noreferrer"
+            data-brand="whatsapp"
+          >
+            <i class="ri-whatsapp-line" aria-hidden="true"></i>
+            <strong>WhatsApp Crew</strong>
+            <span>+234 813 322 1547</span>
+            <small>Styling requests</small>
+          </a>
         </div>
       </section>
     </main>
