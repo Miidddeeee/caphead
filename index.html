@@ -82,30 +82,32 @@
       }
 
       main {
-        width: min(1120px, 100% - 48px);
+        width: min(1080px, 100% - 32px);
         margin: 0 auto;
-        padding: clamp(32px, 6vw, 72px) 0 96px;
+        min-height: 100vh;
+        padding: clamp(24px, 5vw, 48px) 0;
         display: flex;
-        flex-direction: column;
-        gap: clamp(56px, 8vw, 104px);
+        align-items: center;
+        justify-content: center;
       }
 
       .hero {
         position: relative;
+        width: min(1040px, 100%);
         background: var(--surface);
-        padding: clamp(32px, 5vw, 64px);
-        border-radius: clamp(28px, 5vw, 40px);
+        padding: clamp(32px, 5vw, 56px);
+        border-radius: clamp(28px, 5vw, 36px);
         border: 1px solid var(--stroke);
         box-shadow: var(--shadow-lg);
-        display: grid;
-        gap: clamp(32px, 5vw, 56px);
-        align-items: center;
+        display: flex;
+        flex-direction: column;
+        gap: clamp(28px, 4vw, 40px);
       }
 
       .hero::after {
         content: "";
         position: absolute;
-        inset: 24px;
+        inset: clamp(16px, 3vw, 24px);
         border-radius: inherit;
         background: linear-gradient(
           135deg,
@@ -116,6 +118,14 @@
         );
         z-index: 0;
         pointer-events: none;
+      }
+
+      .hero-inner {
+        position: relative;
+        z-index: 1;
+        display: grid;
+        gap: clamp(24px, 4vw, 36px);
+        align-items: center;
       }
 
       .hero-content,
@@ -341,217 +351,138 @@
         font-size: 1rem;
       }
 
-      .section-header {
-        text-align: center;
-        max-width: 640px;
-        margin: 0 auto clamp(32px, 5vw, 48px);
+      .hero-connect {
+        position: relative;
+        z-index: 1;
+        padding: clamp(20px, 3vw, 28px);
+        border-radius: 24px;
+        background: rgba(255, 255, 255, 0.9);
+        border: 1px solid rgba(15, 23, 42, 0.1);
+        box-shadow: 0 18px 40px rgba(15, 23, 42, 0.14);
         display: grid;
+        gap: clamp(16px, 3vw, 22px);
+      }
+
+      .hero-connect-header {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: flex-start;
         gap: 12px;
       }
 
-      .section-kicker {
-        font-size: 0.82rem;
-        letter-spacing: 0.32em;
+      .hero-connect-title {
+        display: grid;
+        gap: 6px;
+      }
+
+      .hero-connect-kicker {
+        font-size: 0.76rem;
+        letter-spacing: 0.28em;
         text-transform: uppercase;
         color: rgba(79, 70, 229, 0.7);
         font-weight: 600;
       }
 
-      .section-header h2 {
+      .hero-connect-title h2 {
         margin: 0;
-        font-size: clamp(1.9rem, 4.8vw, 2.6rem);
+        font-size: clamp(1.4rem, 3vw, 1.9rem);
         font-weight: 700;
+        letter-spacing: -0.01em;
         color: var(--brand-ink);
-        letter-spacing: -0.015em;
       }
 
-      .section-header p {
+      .hero-connect-header p {
         margin: 0;
-        color: rgba(15, 23, 42, 0.68);
-        font-size: 1rem;
-        line-height: 1.6;
-      }
-
-      .caps-gallery {
-        padding: clamp(32px, 5vw, 56px);
-        border-radius: clamp(24px, 4vw, 32px);
-        background: var(--brand-light);
-        border: 1px solid rgba(15, 23, 42, 0.06);
-        box-shadow: 0 28px 60px rgba(4, 27, 40, 0.12);
-      }
-
-      .caps-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-        gap: clamp(18px, 3vw, 28px);
-      }
-
-      .cap-card {
-        position: relative;
-        height: 280px;
-        border-radius: 24px;
-        overflow: hidden;
-        display: flex;
-        align-items: flex-end;
-        padding: 24px;
-        color: #ffffff;
-        box-shadow: 0 24px 48px rgba(4, 27, 40, 0.24);
-        background-position: center;
-        background-size: cover;
-        background-repeat: no-repeat;
-      }
-
-      .cap-card::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(
-          180deg,
-          rgba(4, 27, 40, 0.15) 0%,
-          rgba(4, 27, 40, 0.7) 75%,
-          rgba(4, 27, 40, 0.85) 100%
-        );
-      }
-
-      .cap-card > div {
-        position: relative;
-        z-index: 1;
-        display: grid;
-        gap: 6px;
-      }
-
-      .cap-card span {
-        font-size: 0.78rem;
-        letter-spacing: 0.24em;
-        text-transform: uppercase;
-        color: rgba(255, 255, 255, 0.72);
-      }
-
-      .cap-card h3 {
-        margin: 0;
-        font-size: 1.4rem;
-        font-weight: 600;
-      }
-
-      .cap-card p {
-        margin: 0;
-        font-size: 0.95rem;
+        max-width: 360px;
+        color: rgba(15, 23, 42, 0.66);
         line-height: 1.5;
-        color: rgba(255, 255, 255, 0.82);
-      }
-
-      .connect {
-        display: grid;
-        gap: clamp(24px, 4vw, 36px);
-        padding: clamp(32px, 5vw, 52px);
-        border-radius: clamp(24px, 4vw, 32px);
-        background: linear-gradient(
-          120deg,
-          rgba(4, 27, 40, 0.92) 0%,
-          rgba(17, 24, 39, 0.88) 60%,
-          rgba(15, 23, 42, 0.82) 100%
-        );
-        color: #ffffff;
-        box-shadow: 0 32px 60px rgba(4, 27, 40, 0.35);
-        border: 1px solid rgba(255, 255, 255, 0.08);
-      }
-
-      .connect .section-header h2 {
-        color: #ffffff;
-      }
-
-      .connect .section-header p {
-        color: rgba(255, 255, 255, 0.76);
-      }
-
-      .connect .section-kicker {
-        color: rgba(251, 191, 36, 0.8);
+        font-size: 0.95rem;
       }
 
       .connect-channels {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-        gap: clamp(18px, 3vw, 26px);
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: clamp(14px, 2.5vw, 20px);
       }
 
       .channel {
-        position: relative;
-        display: flex;
-        flex-direction: column;
+        display: grid;
         gap: 6px;
-        padding: 22px 20px;
-        border-radius: 20px;
+        padding: 18px 20px;
+        border-radius: 18px;
         text-decoration: none;
-        background: rgba(15, 23, 42, 0.55);
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        color: #ffffff;
+        background: rgba(15, 23, 42, 0.08);
+        border: 1px solid rgba(15, 23, 42, 0.12);
+        color: var(--brand-ink);
         transition: transform 0.3s ease, box-shadow 0.3s ease,
           background 0.3s ease;
       }
 
       .channel:hover,
       .channel:focus-visible {
-        transform: translateY(-6px);
-        box-shadow: 0 24px 48px rgba(0, 0, 0, 0.35);
-        background: rgba(15, 23, 42, 0.75);
+        transform: translateY(-4px);
+        box-shadow: 0 18px 32px rgba(15, 23, 42, 0.18);
+        background: rgba(15, 23, 42, 0.12);
       }
 
       .channel i {
-        font-size: 1.6rem;
+        font-size: 1.4rem;
+        color: inherit;
       }
 
       .channel strong {
-        font-size: 1.05rem;
+        font-size: 1.02rem;
         font-weight: 600;
         letter-spacing: -0.01em;
       }
 
       .channel span {
-        font-size: 0.88rem;
-        color: rgba(255, 255, 255, 0.82);
+        font-size: 0.9rem;
+        color: rgba(15, 23, 42, 0.72);
       }
 
       .channel small {
-        font-size: 0.78rem;
-        letter-spacing: 0.12em;
+        font-size: 0.72rem;
+        letter-spacing: 0.14em;
         text-transform: uppercase;
-        color: rgba(255, 255, 255, 0.62);
+        color: rgba(15, 23, 42, 0.52);
       }
 
       .channel[data-brand="instagram"] {
         background: linear-gradient(
-            140deg,
-            rgba(255, 115, 179, 0.32),
-            rgba(255, 163, 77, 0.28)
+            135deg,
+            rgba(250, 113, 205, 0.15),
+            rgba(253, 186, 116, 0.12)
           )
-          rgba(15, 23, 42, 0.55);
+          rgba(15, 23, 42, 0.05);
       }
 
       .channel[data-brand="tiktok"] {
         background: linear-gradient(
-            140deg,
-            rgba(0, 242, 234, 0.28),
-            rgba(255, 56, 93, 0.28)
+            135deg,
+            rgba(45, 212, 191, 0.12),
+            rgba(248, 113, 113, 0.12)
           )
-          rgba(15, 23, 42, 0.55);
+          rgba(15, 23, 42, 0.05);
       }
 
       .channel[data-brand="whatsapp"] {
         background: linear-gradient(
-            140deg,
-            rgba(16, 185, 129, 0.38),
-            rgba(45, 212, 191, 0.28)
+            135deg,
+            rgba(16, 185, 129, 0.16),
+            rgba(45, 212, 191, 0.12)
           )
-          rgba(15, 23, 42, 0.55);
+          rgba(15, 23, 42, 0.05);
       }
 
       .channel[data-brand="phone"] {
         background: linear-gradient(
-            140deg,
-            rgba(59, 130, 246, 0.3),
-            rgba(79, 70, 229, 0.3)
+            135deg,
+            rgba(59, 130, 246, 0.14),
+            rgba(129, 140, 248, 0.12)
           )
-          rgba(15, 23, 42, 0.55);
+          rgba(15, 23, 42, 0.05);
       }
 
       footer {
@@ -562,7 +493,7 @@
       }
 
       @media (min-width: 900px) {
-        .hero {
+        .hero-inner {
           grid-template-columns: 1.15fr 0.85fr;
         }
 
@@ -599,10 +530,6 @@
           flex-direction: column;
         }
 
-        .cap-card {
-          height: 240px;
-        }
-
         .channel {
           padding: 20px 18px;
         }
@@ -612,215 +539,153 @@
   <body>
     <main>
       <section class="hero">
-        <div class="hero-content">
-          <img
-            src="assets/caphead-logo.png"
-            alt="CapHead logo"
-            class="hero-logo"
-            loading="lazy"
-          />
-          <span class="hero-kicker">Community-first lifestyle brand</span>
-          <h1 class="hero-tagline">Just the cap.</h1>
-          <p class="hero-statement">style starts at the top</p>
-          <p class="hero-subtext">
-            CapHead curates premium headwear, editorial drops, and city meetups
-            powered by cap lovers from Lagos to Los Angeles.
-          </p>
-          <div class="hero-actions">
+        <div class="hero-inner">
+          <div class="hero-content">
+            <img
+              src="assets/caphead-logo.png"
+              alt="CapHead logo"
+              class="hero-logo"
+              loading="lazy"
+            />
+            <span class="hero-kicker">Community-first lifestyle brand</span>
+            <h1 class="hero-tagline">Just the cap.</h1>
+            <p class="hero-statement">Style starts at the top</p>
+            <p class="hero-subtext">
+              CapHead curates premium headwear, editorial drops, and city meetups
+              powered by cap lovers from Lagos to Los Angeles.
+            </p>
+            <div class="hero-actions">
+              <a
+                href="https://wa.me/2349034323055"
+                class="hero-cta"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Join the Movement
+              </a>
+              <a
+                class="cta-secondary"
+                href="https://instagram.com/caphead.ng"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <i class="ri-play-circle-line" aria-hidden="true"></i>
+                Watch our lookbook
+              </a>
+            </div>
+            <ul class="hero-stats">
+              <li>
+                <strong>15K+</strong>
+                <span>Cap wearers worldwide</span>
+              </li>
+              <li>
+                <strong>120+</strong>
+                <span>City chapters activated</span>
+              </li>
+              <li>
+                <strong>24/7</strong>
+                <span>Culture drops &amp; stories</span>
+              </li>
+            </ul>
+          </div>
+          <div class="hero-media">
+            <div class="media-frame">
+              <img
+                src="https://images.unsplash.com/photo-1514311548100-22c0bbef0c09?auto=format&fit=crop&w=800&q=80"
+                alt="CapHead limited-edition New Era cap"
+                loading="lazy"
+              />
+              <span class="media-badge">New Era Capsule</span>
+            </div>
+            <div class="media-card">
+              <h3>Next drop: Midtown Era</h3>
+              <p>
+                Featuring an exclusive New Era silhouette with moisture-wicking
+                lining and a Lagos-to-LDN inspired brim stitch.
+              </p>
+              <a
+                href="https://tiktok.com/@caphead.ng"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Preview on TikTok <i class="ri-arrow-right-line" aria-hidden="true"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="hero-connect" id="connect">
+          <div class="hero-connect-header">
+            <div class="hero-connect-title">
+              <span class="hero-connect-kicker">follow with us</span>
+              <h2>Tune into the movement</h2>
+            </div>
+            <p>
+              Tap in for behind-the-scenes content, live drop alerts, and real-time
+              concierge support.
+            </p>
+          </div>
+          <div class="connect-channels">
             <a
-              href="https://wa.me/2349034323055"
-              class="hero-cta"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Join the Movement
-            </a>
-            <a
-              class="cta-secondary"
+              class="channel"
               href="https://instagram.com/caphead.ng"
               target="_blank"
               rel="noopener noreferrer"
+              data-brand="instagram"
             >
-              <i class="ri-play-circle-line" aria-hidden="true"></i>
-              Watch our lookbook
+              <i class="ri-instagram-line" aria-hidden="true"></i>
+              <strong>Instagram</strong>
+              <span>@caphead.ng</span>
+              <small>Daily fits &amp; reels</small>
             </a>
-          </div>
-          <ul class="hero-stats">
-            <li>
-              <strong>15K+</strong>
-              <span>Cap wearers worldwide</span>
-            </li>
-            <li>
-              <strong>120+</strong>
-              <span>City chapters activated</span>
-            </li>
-            <li>
-              <strong>24/7</strong>
-              <span>Culture drops &amp; stories</span>
-            </li>
-          </ul>
-        </div>
-        <div class="hero-media">
-          <div class="media-frame">
-            <img
-              src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=800&q=80"
-              alt="CapHead community member styling a premium cap"
-              loading="lazy"
-            />
-            <span class="media-badge">Culture Drop 2025</span>
-          </div>
-          <div class="media-card">
-            <h3>Next drop: Midnight Run</h3>
-            <p>
-              Built with breathable tech-fabric, reflective piping, and a
-              hand-finished visor inspired by Lagos nightlife.
-            </p>
             <a
+              class="channel"
               href="https://tiktok.com/@caphead.ng"
               target="_blank"
               rel="noopener noreferrer"
+              data-brand="tiktok"
             >
-              Preview on TikTok <i class="ri-arrow-right-line" aria-hidden="true"></i>
+              <i class="ri-tiktok-line" aria-hidden="true"></i>
+              <strong>TikTok</strong>
+              <span>@caphead.ng</span>
+              <small>Caps in motion</small>
+            </a>
+            <a class="channel" href="tel:+2348133221547" data-brand="phone">
+              <i class="ri-phone-line" aria-hidden="true"></i>
+              <strong>Call CapHead</strong>
+              <span>+234 813 322 1547</span>
+              <small>Community concierge</small>
+            </a>
+            <a class="channel" href="tel:+2349034323055" data-brand="phone">
+              <i class="ri-phone-line" aria-hidden="true"></i>
+              <strong>Call CapHead</strong>
+              <span>+234 903 432 3055</span>
+              <small>Wholesale &amp; press</small>
+            </a>
+            <a
+              class="channel"
+              href="https://wa.me/2349034323055"
+              target="_blank"
+              rel="noopener noreferrer"
+              data-brand="whatsapp"
+            >
+              <i class="ri-whatsapp-line" aria-hidden="true"></i>
+              <strong>WhatsApp Crew</strong>
+              <span>+234 903 432 3055</span>
+              <small>Instant drop alerts</small>
+            </a>
+            <a
+              class="channel"
+              href="https://wa.me/2348133221547"
+              target="_blank"
+              rel="noopener noreferrer"
+              data-brand="whatsapp"
+            >
+              <i class="ri-whatsapp-line" aria-hidden="true"></i>
+              <strong>WhatsApp Crew</strong>
+              <span>+234 813 322 1547</span>
+              <small>Styling requests</small>
             </a>
           </div>
-        </div>
-      </section>
-
-      <section class="caps-gallery" id="caps">
-        <header class="section-header">
-          <span class="section-kicker">editor's picks</span>
-          <h2>Essentials for every head</h2>
-          <p>
-            Street-certified classics, stadium-ready statement pieces, and
-            limited collaborations from the global CapHead community.
-          </p>
-        </header>
-        <div class="caps-grid">
-          <article
-            class="cap-card"
-            style="background-image: url('https://images.unsplash.com/photo-1520975916090-3105956dac38?auto=format&fit=crop&w=900&q=80');"
-          >
-            <div>
-              <span>Drop 05</span>
-              <h3>Street Classics</h3>
-              <p>
-                Bold embroidered logos, heavyweight cotton, and a silhouette
-                built to last the grind.
-              </p>
-            </div>
-          </article>
-          <article
-            class="cap-card"
-            style="background-image: url('https://images.unsplash.com/photo-1514311548100-22c0bbef0c09?auto=format&fit=crop&w=900&q=80');"
-          >
-            <div>
-              <span>Seasonal Spotlight</span>
-              <h3>Skyline Neo</h3>
-              <p>
-                Sleek midnight mesh with reflective trims that light up every
-                rooftop session.
-              </p>
-            </div>
-          </article>
-          <article
-            class="cap-card"
-            style="background-image: url('https://images.unsplash.com/photo-1490111718993-d98654ce6cf7?auto=format&fit=crop&w=900&q=80');"
-          >
-            <div>
-              <span>Community collab</span>
-              <h3>Heritage Patch</h3>
-              <p>
-                Vintage varsity textures stitched with local artist patches and
-                limited to 150 units.
-              </p>
-            </div>
-          </article>
-          <article
-            class="cap-card"
-            style="background-image: url('https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=900&q=80');"
-          >
-            <div>
-              <span>Performance</span>
-              <h3>Velocity Tech</h3>
-              <p>
-                Lightweight nylon weave with moisture-wicking sweatband for the
-                run, ride, and rally.
-              </p>
-            </div>
-          </article>
-        </div>
-      </section>
-
-      <section class="connect" id="connect">
-        <header class="section-header">
-          <span class="section-kicker">follow with us</span>
-          <h2>Tune into the movement</h2>
-          <p>
-            Tap in for behind-the-scenes content, live drop alerts, and real-time
-            concierge support.
-          </p>
-        </header>
-        <div class="connect-channels">
-          <a
-            class="channel"
-            href="https://instagram.com/caphead.ng"
-            target="_blank"
-            rel="noopener noreferrer"
-            data-brand="instagram"
-          >
-            <i class="ri-instagram-line" aria-hidden="true"></i>
-            <strong>Instagram</strong>
-            <span>@caphead.ng</span>
-            <small>Daily fits &amp; reels</small>
-          </a>
-          <a
-            class="channel"
-            href="https://tiktok.com/@caphead.ng"
-            target="_blank"
-            rel="noopener noreferrer"
-            data-brand="tiktok"
-          >
-            <i class="ri-tiktok-line" aria-hidden="true"></i>
-            <strong>TikTok</strong>
-            <span>@caphead.ng</span>
-            <small>Caps in motion</small>
-          </a>
-          <a class="channel" href="tel:+2348133221547" data-brand="phone">
-            <i class="ri-phone-line" aria-hidden="true"></i>
-            <strong>Call CapHead</strong>
-            <span>+234 813 322 1547</span>
-            <small>Community concierge</small>
-          </a>
-          <a class="channel" href="tel:+2349034323055" data-brand="phone">
-            <i class="ri-phone-line" aria-hidden="true"></i>
-            <strong>Call CapHead</strong>
-            <span>+234 903 432 3055</span>
-            <small>Wholesale &amp; press</small>
-          </a>
-          <a
-            class="channel"
-            href="https://wa.me/2349034323055"
-            target="_blank"
-            rel="noopener noreferrer"
-            data-brand="whatsapp"
-          >
-            <i class="ri-whatsapp-line" aria-hidden="true"></i>
-            <strong>WhatsApp Crew</strong>
-            <span>+234 903 432 3055</span>
-            <small>Instant drop alerts</small>
-          </a>
-          <a
-            class="channel"
-            href="https://wa.me/2348133221547"
-            target="_blank"
-            rel="noopener noreferrer"
-            data-brand="whatsapp"
-          >
-            <i class="ri-whatsapp-line" aria-hidden="true"></i>
-            <strong>WhatsApp Crew</strong>
-            <span>+234 813 322 1547</span>
-            <small>Styling requests</small>
-          </a>
         </div>
       </section>
     </main>
